@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript"
+            src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js"></script>
+    <script type="text/javascript"
+            src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerwithlabel/src/markerwithlabel.js"></script>
+    <script type="text/javascript"
+            src="superclusterer.js"></script>
+
+    <script type="text/javascript">
+      $(function() {
+          var latlng = new google.maps.LatLng(56, 24);
+          var mapOptions = {
+              zoom: 4,
+              center: latlng,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          var map = new google.maps.Map($('#map')[0], mapOptions);
+          var clusterer = new MarkerSuperClusterer(map);
+
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(55, 24),
+            map: map,
+            title: 'Title',
+          });
+          clusterer.addCluster(marker, 100000);
+
+          var marker2 = new google.maps.Marker({
+            position: new google.maps.LatLng(55, 24),
+            map: map,
+            title: 'Title',
+          });
+          clusterer.addCluster(marker2, 2000);
+
+          var marker3 = new google.maps.Marker({
+            position: new google.maps.LatLng(55.1, 24.2),
+            map: map,
+            title: 'Title',
+          });
+          clusterer.addMarker(marker3);
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="map" style="width: 500px; height: 500px;"></div>
+  </body>
+</html>
